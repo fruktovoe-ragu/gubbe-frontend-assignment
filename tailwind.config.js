@@ -8,6 +8,7 @@ export default {
         customBgGreen: '#286161',
         customFontGreen: "#006261",
         customLightGray: '#F2F5F5',
+        customFontCommon: "#333333",
       },
     },
   },

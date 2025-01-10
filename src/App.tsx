@@ -111,7 +111,7 @@ function App() {
   const handleResetFilterClick = () => {
     setFilteredData(data);
     setSelectedFilterItem(SELECT_PLACEHOLDER);
-  }
+  };
 
   const itemsToRender = () => {
     const itemsPerPage = 20;
@@ -128,9 +128,11 @@ function App() {
       <div className="pb-4 flex justify-end gap-2">
         {selectedFilterItem !== SELECT_PLACEHOLDER && (
           <ButtonBase
+            focusRipple
+            aria-label="Reset filter"
             onClick={handleResetFilterClick}
             classes={{
-              root: '!bg-white !text-customFontGreen !rounded-full !px-8 !py-1 flex gap-1'
+              root: '!bg-white !text-customFontGreen !rounded-full !px-8 !py-1 flex gap-1 font-medium'
             }}
           >
             <CrossIcon />
@@ -140,14 +142,16 @@ function App() {
         <Select
           size="small"
           value={selectedFilterItem}
+          aria-label="Choose department for filtering"
           onChange={handleSelectChange}
           sx={{
             "& .MuiSelect-select": {
               backgroundColor: '#FFFFFF',
-              width: '100px',
+              width: '150px',
             },
             ".MuiTouchRipple-root": {
               color: '#006261',
+              borderRadius: '0.75rem',
             }
           }}
         >
@@ -157,7 +161,7 @@ function App() {
           ))}
         </Select>
       </div>
-      <div className="max-w-[95vw] overflow-x-auto rounded-xl">
+      <div className="max-w-[95vw] overflow-x-auto rounded-lg">
         <table className="w-full border-collapse border-none bg-gray-800">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -180,7 +184,7 @@ function App() {
             {itemsToRender().map((row) => (
               <tr key={row.id} className="odd:bg-white even:bg-customLightGray">
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="first:pr-0 first:opacity-40 px-6 py-4 whitespace-nowrap border-none text-customFontGreen">
+                  <td key={cell.id} className="first:pr-0 first:opacity-40 px-6 py-4 whitespace-nowrap border-none text-customFontCommon">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
@@ -200,6 +204,8 @@ function App() {
             },
             ".MuiButtonBase-root": {
               color: '#006261',
+              fontSize: '1rem',
+              fontWeight: '500',
             }
           }}
         />
